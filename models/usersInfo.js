@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Shema
+const Schema = mongoose.Schema
 
 const usersInfo = new Schema ({
      UserID:{
@@ -16,4 +16,4 @@ const usersInfo = new Schema ({
      }
 })
 
-module.exports = mongoose.model('UsersInfo', usersInfo)
+module.exports = mongoose.model('Users-Info', usersInfo)
