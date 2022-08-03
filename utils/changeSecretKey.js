@@ -1,19 +1,15 @@
 const mongoose = require('mongoose')
 const randomstring = require('randomstring')
 
+const getTime = require('./getTime')
 const config = require('../config/config')
 const SecretKey = require('../models/SecretKey')
-
-let getTime = () => {
-     let dataNow = new Date()
-     return (dataNow.getHours() + ':' + dataNow.getMinutes() + ':' + dataNow.getSeconds())
-}
 
 let intervalChanger = (key) => {
      setInterval(async() => {
                let newKeyValue = randomstring.generate(50)
                key.Value = newKeyValue
-               await key.save().then(console.log('Secret key changed. Time ' + getTime()))
+               await key.save().then(console.log('Secret key changed.' + getTime()))
           },config.timeInterval*60000
      )
 }
@@ -41,4 +37,10 @@ let findSecretKey = async (keyName) => {
      })
 }
 
-module.exports = findSecretKey(config.keyType)
+module.exports.start = findSecretKey(config.keyType)
+
+let genereteNewKey = () => {
+
+}
+
+module.exports.action = genereteNewKey()
